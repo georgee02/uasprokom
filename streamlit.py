@@ -37,7 +37,7 @@ elif option == 'Oil Data':
 
                 data_produksi = dm[dm["kode_negara"].isin([nation['alpha-3']])]["produksi"].tolist()
 
-                st.text("Chart Kode Negara => {}".format(nation['alpha-3']))
+                st.text("Grafik Kode Negara => {}".format(nation['alpha-3']))
                             
                 chart_data = pd.DataFrame(
                     data_produksi, 
@@ -50,7 +50,7 @@ elif option == 'Oil Data':
                 year_data = dm[dm["kode_negara"].isin([nation['alpha-3']])]["tahun"].tolist()
 
                 in_tahun = st.selectbox('Masukan Tahun ', year_data)
-                st.text("Chart tahunan Kode Negara => {} Pada Tahun {}".format(nation['alpha-3'], in_tahun))
+                st.text("Grafik tahunan Kode Negara => {} Pada Tahun {}".format(nation['alpha-3'], in_tahun))
 
                 d_tahun = dm[dm["tahun"].isin([in_tahun])]["produksi"].tolist()
 
@@ -63,7 +63,7 @@ elif option == 'Oil Data':
                 chart_tahunan
 
                 # Untuk jawaban 1 c
-                st.text("Chart Pertumbuhan Kode Negara => {} Pada Tahun {}".format(nation['alpha-3'], in_tahun))
+                st.text(" Grafik Pertumbuhan Kode Negara => {} Pada Tahun {}".format(nation['alpha-3'], in_tahun))
                 d_pertum = dm[dm["kode_negara"].isin([nation['alpha-3']])]["produksi"].tolist()                
 
                 chart_pertum = pd.DataFrame(
@@ -108,7 +108,7 @@ elif option == 'Oil Data':
                             res2
                         else :
                             st.write("Informasi Negara kurang lengkap selain kode nation")
-                            st.write("Kode nation : ", str(max_nat_all_year_code))
+                            st.write("Kode Negara : ", str(max_nat_all_year_code))
                 if st.button('Lihat info 2'):
                     df2 = dm.loc[dm['produksi'] > 0]
                     df2.sort_values(by=['produksi'], inplace=True)
@@ -128,7 +128,7 @@ elif option == 'Oil Data':
                             res
                         else :
                             st.write("Informasi Negara kurang lengkap selain kode nation")
-                            st.write("Kode nation : ", str(min_nat_code))
+                            st.write("Kode Negara : ", str(min_nat_code))
                         min_nat_all_year = df2.head(1)
                         min_nat_all_year_code = str(min_nat_all_year["kode_negara"][0])
                         nat_all_year_info = df_js.loc[df_js['alpha-3'] == min_nat_all_year_code]
@@ -140,7 +140,7 @@ elif option == 'Oil Data':
                             res2
                         else :
                             st.write("Informasi Negara kurang lengkap selain kode nation")
-                            st.write("Kode nation : ", str(min_nat_all_year_code))
+                            st.write("Kode Negara : ", str(min_nat_all_year_code))
                 if st.button('Lihat info 3'):
                     df2 = dm.loc[dm['produksi'] == 0]
                     df2.sort_values(by=['kode_negara'], inplace=True)
