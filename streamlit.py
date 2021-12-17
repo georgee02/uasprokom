@@ -12,13 +12,13 @@ option = st.sidebar.selectbox(
 )
 
 if option == 'Home' or option == '':
-    st.write(""" # Halaman Utama""") #menampilkan main page
+    st.write(""" # Homepage""") #menampilkan main page
     st.write('Visualisasi Data Produksi minyak negara')
-    st.write('*Silakan pilih menu yang  ada*')
+    st.write('*Choose the menu*')
 elif option == 'Oil Data':
     st.write("""## Oil Data""") #menampilkan judul halaman 
 
-    nation_txt = st.text_input('Masukan Nama Negara :')
+    nation_txt = st.text_input('Nama Negara :')
     dm = pd.read_csv('data/produksi_minyak_mentah.csv')
     df_js = pd.read_json('data/kode_negara_lengkap.json')
     arr = []
@@ -37,7 +37,7 @@ elif option == 'Oil Data':
 
                 data_produksi = dm[dm["kode_negara"].isin([nation['alpha-3']])]["produksi"].tolist()
 
-                st.text("Chart Untuk Kode Negara => {}".format(nation['alpha-3']))
+                st.text("Chart Kode Negara => {}".format(nation['alpha-3']))
                             
                 chart_data = pd.DataFrame(
                     data_produksi, 
@@ -50,7 +50,7 @@ elif option == 'Oil Data':
                 year_data = dm[dm["kode_negara"].isin([nation['alpha-3']])]["tahun"].tolist()
 
                 in_tahun = st.selectbox('Masukan Tahun ', year_data)
-                st.text("Chart Pertahun Untuk Kode Negara => {} Pada Tahun {}".format(nation['alpha-3'], in_tahun))
+                st.text("Chart tahunan Kode Negara => {} Pada Tahun {}".format(nation['alpha-3'], in_tahun))
 
                 d_tahun = dm[dm["tahun"].isin([in_tahun])]["produksi"].tolist()
 
@@ -63,7 +63,7 @@ elif option == 'Oil Data':
                 chart_tahunan
 
                 # Untuk jawaban 1 c
-                st.text("Chart Pertumbuhan Untuk Kode Negara => {} Pada Tahun {}".format(nation['alpha-3'], in_tahun))
+                st.text("Chart Pertumbuhan Kode Negara => {} Pada Tahun {}".format(nation['alpha-3'], in_tahun))
                 d_pertum = dm[dm["kode_negara"].isin([nation['alpha-3']])]["produksi"].tolist()                
 
                 chart_pertum = pd.DataFrame(
@@ -89,25 +89,25 @@ elif option == 'Oil Data':
                         max_nat_code = str(max_nat["kode_negara"][0])
                         nat_info = df_js.loc[df_js['alpha-3'] == max_nat_code]
                         nat_info.reset_index(drop=True, inplace=True)
-                        st.write("Informasi nation dengan jumlah produksi terbesar pada tahun", str(in_tahun))
+                        st.write("Informasi Negara dengan jumlah produksi terbesar pada tahun", str(in_tahun))
                         if(len(nat_info) > 0) :
                             res = [[str(nat_info['name'][0]), str(max_nat_code), str(nat_info['region'][0]), str(nat_info['sub-region'][0])]]
                             res = pd.DataFrame(res, columns=['Nama nation', 'Kode nation', 'Region ', 'Sub-region'])
                             res
                         else :
-                            st.write("Informasi nation kurang lengkap selain kode nation")
-                            st.write("Kode nation : ", str(max_nat_code))
+                            st.write("Informasi Negara kurang lengkap selain kode nation")
+                            st.write("Kode Negara : ", str(max_nat_code))
                         max_nat_all_year = df2.head(1)
                         max_nat_all_year_code = str(max_nat_all_year["kode_negara"][0])
                         nat_all_year_info = df_js.loc[df_js['alpha-3'] == max_nat_all_year_code]
                         nat_all_year_info.reset_index(drop=True, inplace=True)
-                        st.write("Informasi nation dengan jumlah produksi terbesar keseluruhan tahun")
+                        st.write("Informasi Negara dengan jumlah produksi terbesar keseluruhan tahun")
                         if(len(nat_all_year_info) > 0) :
                             res2 = [[str(nat_all_year_info['name'][0]), str(max_nat_all_year_code), str(nat_all_year_info['region'][0]), str(nat_all_year_info['sub-region'][0])]]
                             res2 = pd.DataFrame(res2, columns=['Nama nation', 'Kode nation', 'Region ', 'Sub-region'])
                             res2
                         else :
-                            st.write("Informasi nation kurang lengkap selain kode nation")
+                            st.write("Informasi Negara kurang lengkap selain kode nation")
                             st.write("Kode nation : ", str(max_nat_all_year_code))
                 if st.button('Lihat info 2'):
                     df2 = dm.loc[dm['produksi'] > 0]
@@ -121,25 +121,25 @@ elif option == 'Oil Data':
                         min_nat_code = str(min_nat["kode_negara"][0])
                         nat_info = df_js.loc[df_js['alpha-3'] == min_nat_code]
                         nat_info.reset_index(drop=True, inplace=True)
-                        st.write("Informasi nation dengan jumlah produksi terkecil pada tahun", str(in_tahun))
+                        st.write("Informasi Negara dengan jumlah produksi terkecil pada tahun", str(in_tahun))
                         if(len(nat_info) > 0) :
                             res = [[str(nat_info['name'][0]), str(min_nat_code), str(nat_info['region'][0]), str(nat_info['sub-region'][0])]]
                             res = pd.DataFrame(res, columns=['Nama nation', 'Kode nation', 'Region ', 'Sub-region'])
                             res
                         else :
-                            st.write("Informasi nation kurang lengkap selain kode nation")
+                            st.write("Informasi Negara kurang lengkap selain kode nation")
                             st.write("Kode nation : ", str(min_nat_code))
                         min_nat_all_year = df2.head(1)
                         min_nat_all_year_code = str(min_nat_all_year["kode_negara"][0])
                         nat_all_year_info = df_js.loc[df_js['alpha-3'] == min_nat_all_year_code]
                         nat_all_year_info.reset_index(drop=True, inplace=True)
-                        st.write("Informasi nation dengan jumlah produksi terkecil keseluruhan tahun")
+                        st.write("Informasi Negara dengan jumlah produksi terkecil keseluruhan tahun")
                         if(len(nat_all_year_info) > 0) :
                             res2 = [[str(nat_all_year_info['name'][0]), str(min_nat_all_year_code), str(nat_all_year_info['region'][0]), str(nat_all_year_info['sub-region'][0])]]
                             res2 = pd.DataFrame(res2, columns=['Nama nation', 'Kode nation', 'Region ', 'Sub-region'])
                             res2
                         else :
-                            st.write("Informasi nation kurang lengkap selain kode nation")
+                            st.write("Informasi Negara kurang lengkap selain kode nation")
                             st.write("Kode nation : ", str(min_nat_all_year_code))
                 if st.button('Lihat info 3'):
                     df2 = dm.loc[dm['produksi'] == 0]
@@ -160,7 +160,7 @@ elif option == 'Oil Data':
                             res[i][1] = str(df_year_uniq[i])
                             res[i][2] = str(nat_info['region'][0])
                             res[i][3] = str(nat_info['sub-region'][0])
-                        st.write("Informasi nation dengan jumlah produksi nol pada tahun ", str(in_tahun))
+                        st.write("Informasi Negara dengan jumlah produksi nol pada tahun ", str(in_tahun))
                         res = pd.DataFrame(res, columns=['Nama nation', 'Kode nation', 'Region ', 'Sub-region'])
                         res
                         res2 = [[0, 0, 0, 0] for i in range(len(df2_uniq))]
@@ -172,6 +172,6 @@ elif option == 'Oil Data':
                             res2[i][1] = str(df2_uniq[i])
                             res2[i][2] = str(nat_info['region'][0])
                             res2[i][3] = str(nat_info['sub-region'][0])
-                        st.write("Informasi nation dengan jumlah produksi nol pada seluruh tahun ")
+                        st.write("Informasi Negara dengan jumlah produksi nol pada seluruh tahun ")
                         res2 = pd.DataFrame(res2, columns=['Nama nation', 'Kode nation', 'Region ', 'Sub-region'])
                         res2
