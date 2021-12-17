@@ -8,15 +8,15 @@ data_n = json.load(f)
 
 option = st.sidebar.selectbox(
     'Silakan pilih:',
-    ('Home','Jumlah Produksi Minyak')
+    ('Home','Oil Data')
 )
 
 if option == 'Home' or option == '':
     st.write(""" # Halaman Utama""") #menampilkan main page
     st.write('Visualisasi Data Produksi minyak negara')
     st.write('*Silakan pilih menu yang  ada*')
-elif option == 'Jumlah Produksi Minyak':
-    st.write("""## Jumlah Produksi Minyak""") #menampilkan judul halaman 
+elif option == 'Oil Data':
+    st.write("""## Oil Data""") #menampilkan judul halaman 
 
     nation_txt = st.text_input('Masukan Nama Negara :')
     dm = pd.read_csv('data/produksi_minyak_mentah.csv')
