@@ -83,7 +83,7 @@ elif option == 'Oil Data':
                 df2 = dm
                 df2.sort_values(by=['produksi'], ascending=False, inplace=True)
                 df2.reset_index(drop=True, inplace=True)
-                if st.button('Lihat info 1'):
+                if st.button('Produksi terbesar'):
                     if(len(df_year) > 0) :
                         max_nat = df_year.head(1)
                         max_nat_code = str(max_nat["kode_negara"][0])
@@ -109,7 +109,7 @@ elif option == 'Oil Data':
                         else :
                             st.write("Informasi Negara kurang lengkap selain kode nation")
                             st.write("Kode Negara : ", str(max_nat_all_year_code))
-                if st.button('Lihat info 2'):
+                if st.button('Produksi terkecil'):
                     df2 = dm.loc[dm['produksi'] > 0]
                     df2.sort_values(by=['produksi'], inplace=True)
                     df2.reset_index(drop=True, inplace=True)
@@ -141,7 +141,7 @@ elif option == 'Oil Data':
                         else :
                             st.write("Informasi Negara kurang lengkap selain kode nation")
                             st.write("Kode Negara : ", str(min_nat_all_year_code))
-                if st.button('Lihat info 3'):
+                if st.button('Produksi 0'):
                     df2 = dm.loc[dm['produksi'] == 0]
                     df2.sort_values(by=['kode_negara'], inplace=True)
                     df2.reset_index(drop=True, inplace=True)
