@@ -14,7 +14,8 @@ option = st.sidebar.selectbox(
 if option == 'Home' or option == '':
     st.write(""" # Homepage""") #menampilkan main page
     st.write('Visualisasi Data Produksi minyak negara')
-    st.write('*Choose the menu*')
+    st.write('')
+    st.write('*Choose the menu on the left*')
 elif option == 'Oil Data':
     st.write("""## Oil Data""") #menampilkan judul halaman 
 
